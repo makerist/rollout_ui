@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "Engine" do
+describe "Engine", :type => :feature do
   describe "GET /rollout" do
-    let(:user) { mock(:user, :id => 5) }
+    let(:user) { double(:user, :id => 5) }
 
     before do
       $rollout.active?(:featureA, user)
@@ -23,7 +23,7 @@ describe "Engine" do
           click_button "Save"
         end
 
-        $rollout.active?(:featureA, user).should be_true
+        $rollout.active?(:featureA, user).should be true
       end
 
       it "shows the selected percentage" do
@@ -52,7 +52,7 @@ describe "Engine" do
           click_button "Save"
         end
 
-        $rollout.active?(:featureA, user).should be_true
+        $rollout.active?(:featureA, user).should be true
       end
 
       it "shows the selected groups" do
@@ -62,6 +62,7 @@ describe "Engine" do
           select "beta_testers", :from => "groups[]"
           click_button "Save"
         end
+        save_page
 
         page.should have_css(".groups option[selected='selected']", :text => "beta_testers")
       end
@@ -76,7 +77,7 @@ describe "Engine" do
           click_button "Save"
         end
 
-        $rollout.active?(:featureA, user).should be_true
+        $rollout.active?(:featureA, user).should be true
       end
 
       it "shows the selected percentage" do

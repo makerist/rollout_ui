@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RolloutUi::Feature do
   before do
     # Request a feature to prime RolloutUi::Wrapper rollout instance
-    $rollout.active?(:featureA, mock(:user, :id => 5))
+    $rollout.active?(:featureA, double(:user, :id => 5))
 
     @feature = RolloutUi::Feature.new(:featureA)
   end
@@ -49,7 +49,7 @@ describe RolloutUi::Feature do
     end
 
     it "returns the activated users for the feature" do
-      $rollout.activate_user(:featureA, mock(:user, :id => 5))
+      $rollout.activate_user(:featureA, double(:user, :id => 5))
       @feature.user_ids.should == ["5"]
     end
   end

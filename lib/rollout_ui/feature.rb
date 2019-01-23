@@ -10,7 +10,7 @@ module RolloutUi
     end
 
     def percentage
-      rollout.get(feature_for(name)).percentage.to_s
+      rollout.get(feature_for(name)).percentage.to_i.to_s
     end
 
     def groups
